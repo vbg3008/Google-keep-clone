@@ -8,6 +8,9 @@ body{
   background: violet;
  display: flex;
  align-items: center;
+ box-sizing: border-box;
+ margin: 0;
+ padding: 0;
  
 }
 .App{
@@ -22,6 +25,7 @@ backdrop-filter: blur(5px);
 border: 1px solid rgba(255, 255, 255, 0.3);
     width:100rem;
     margin-left: 9rem;
+    margin-top: 1.8rem;
 }
 
 .button-89 {
@@ -60,3 +64,27 @@ border: 1px solid rgba(255, 255, 255, 0.3);
     background: var(--color);
     color: #fff;
   }
+
+.errorImage{
+ background-image: url('../src/images/lost.jpg');
+ width: 100vw;
+ height: 100vh;
+ background-size: cover;  /* Ensures the image covers the entire div */
+  background-position: center;  /* Centers the image */
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+}
+
+.error-link{
+  font-size: 4rem;
+  color: #87A8AD;
+  padding-bottom: 4rem;
+  text-decoration: none;
+  
+}
+
+.error-link:visited{
+  color: #87A8AD;
+}

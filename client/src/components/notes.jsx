@@ -73,7 +73,7 @@ export const Notes = memo(function Notes() {
 
   return (
     <>
-      <h1>Notes</h1>
+      <h1 style={{textAlign:'center'}}>Notes</h1>
       <div
         style={{
           display: "flex",
