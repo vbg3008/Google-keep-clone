@@ -15,24 +15,9 @@ export const NoteInput = () => {
   const handleClickOutside = (event) => {
     if (modalRef.current && !modalRef.current.contains(event.target)) {
       setIsClicked(false);
-      //to check we dont send notes with only taglines
-      if (
-        tagline.trim() === "" &&
-        title.trim() === "" &&
-        content.trim() === ""
-      ) {
-        setTagline("");
-        toast.warn(
-          "⚠️ Can't add a note with just a tagline. Please provide a title and some content.",
-          {
-            position: "top-right",
-            autoClose: 4500,
-            closeOnClick: true,
-          }
-        );
-      }
+ 
       // Check if either title or content is not empty
-      if (title.trim() !== "" || content.trim() !== "") {
+      if (title.trim() !== "" || content.trim() !== "" || tagline.trim() !== "") {
         console.log("in handleClickOutside");
         sendNote();
       }
@@ -149,7 +134,6 @@ const styles = {
   modalDialog: {
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
     borderRadius: "8px",
-    padding: "10px",
     background: "transparent",
     width: "90%",
   },
@@ -159,7 +143,6 @@ const styles = {
     border: "none",
     boxShadow: "none",
     outline: "none",
-    padding: "10px",
     fontSize: "16px",
     borderBottom: "1px solid #ddd",
     borderRadius: "4px",

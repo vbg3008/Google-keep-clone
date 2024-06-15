@@ -3,6 +3,8 @@ import Card from "react-bootstrap/Card";
 import PushPinOutlinedIcon from "@mui/icons-material/PushPinOutlined";
 import PushPinIcon from "@mui/icons-material/PushPin";
 import Box from "@mui/material/Box";
+import Tooltip from '@mui/material/Tooltip';
+
 
 import Modal from "@mui/material/Modal";
 import UpdateNote from "./updateNote";
@@ -66,6 +68,8 @@ export const Notes = memo(function Notes() {
     setOpenModal(false);
     setSelectedNote(null);
   };
+  const sortedNotes = currentNotes.sort((a, b) => b.isPinned - a.isPinned);
+
 
   return (
     <>
@@ -74,17 +78,19 @@ export const Notes = memo(function Notes() {
         style={{
           display: "flex",
           flexWrap: "wrap",
-
-          width: "70%",
+          height:'400px',
+          paddingLeft: '40px',
+          width: "80%",
           margin: "auto",
         }}
       >
-        {currentNotes.map((note) => (
+        {sortedNotes.map((note) => (
           <Card
             key={note._id}
             onClick={() => handleNoteClick(note)}
             style={{
-              width: "25rem",
+              width: "23rem",
+              height: "12rem",
               border: "1px solid black",
               margin: "1rem",
               borderRadius: "10px",
@@ -112,11 +118,13 @@ export const Notes = memo(function Notes() {
               >
                 {note.content}
               </p>
+              <Tooltip title={note.isPinned ? 'Pinned Note' : 'Not Pinned' } >
               {note.isPinned ? (
                 <PushPinIcon style={{ marginLeft: "18rem" }} />
               ) : (
                 <PushPinOutlinedIcon style={{ marginLeft: "18rem" }} />
               )}
+              </Tooltip>
             </Card.Body>
           </Card>
         ))}
@@ -143,7 +151,8 @@ export const Notes = memo(function Notes() {
           display: "flex",
           justifyContent: "center",
           marginTop: "1rem",
-          paddingBottom: "4rem",
+          paddingBottom: "2rem",
+          paddingTop: "0.2rem",
         }}
       >
         <button

@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { TextField, Box } from "@mui/material";
+import PushPinOutlinedIcon from "@mui/icons-material/PushPinOutlined";
+import PushPinIcon from "@mui/icons-material/PushPin";
+import Tooltip from '@mui/material/Tooltip';
+
 
 const UpdateNote = ({ note, onUpdate, onClose }) => {
   const [title, setTitle] = useState(note.title);
@@ -45,6 +49,10 @@ const UpdateNote = ({ note, onUpdate, onClose }) => {
       });
   };
 
+  const handlePinClick = () => {
+    setIsPinned(!isPinned);
+  };
+
   return (
     <Box style={{}}>
       <h1>Update Note?</h1>
@@ -71,8 +79,17 @@ const UpdateNote = ({ note, onUpdate, onClose }) => {
         onChange={(e) => setContent(e.target.value)}
         margin="normal"
       />
+      <Tooltip title={isPinned ? 'Pinned Note' : 'Not Pinned' } >
       <button
-        style={{ color: "black", marginLeft: "9rem" }}
+          variant="outlined"
+          onClick={handlePinClick}
+          style={{ fontFamily: "monospace" }}
+        >
+          {isPinned ? <PushPinIcon /> : <PushPinOutlinedIcon />}
+        </button>
+        </Tooltip>
+      <button
+        style={{ color: "black", marginLeft: "6rem" }}
         centered
         className="button-89"
         onClick={handleSave}
