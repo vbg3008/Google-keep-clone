@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect , useReducer } from "react";
+import React, { memo, useState, useEffect, useReducer } from "react";
 import Card from "react-bootstrap/Card";
 import PushPinOutlinedIcon from "@mui/icons-material/PushPinOutlined";
 import PushPinIcon from "@mui/icons-material/PushPin";
@@ -34,7 +34,9 @@ export const Notes = memo(function Notes() {
 
   const fetchNotes = async () => {
     try {
-      const response = await fetch("http://localhost:6001/getnotes");
+      const response = await fetch(
+        "https://google-keep-clone-2dw1.onrender.com/getnotes"
+      );
       if (!response.ok) {
         throw new Error("Failed to fetch notes");
       }

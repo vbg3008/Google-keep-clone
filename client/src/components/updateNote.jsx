@@ -17,7 +17,7 @@ const UpdateNote = ({ note, onUpdate, onClose }) => {
   }, [note]);
 
   const handleSave = () => {
-    const url = `http://localhost:6001/updatenote/${note._id}`;
+    const url = `https://google-keep-clone-2dw1.onrender.com/updatenote/${note._id}`;
     console.log(url);
 
     fetch(url, {
@@ -71,7 +71,12 @@ const UpdateNote = ({ note, onUpdate, onClose }) => {
         onChange={(e) => setContent(e.target.value)}
         margin="normal"
       />
-      <button style={{color:'black' , marginLeft:'9rem'}} centered className="button-89" onClick={handleSave}>
+      <button
+        style={{ color: "black", marginLeft: "9rem" }}
+        centered
+        className="button-89"
+        onClick={handleSave}
+      >
         Update
       </button>
     </Box>

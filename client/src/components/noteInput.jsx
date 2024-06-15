@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef,  } from "react";
-import { toast , ToastContainer } from "react-toastify";
+import React, { useState, useEffect, useRef } from "react";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 
 import { Modal, Form } from "react-bootstrap";
 
@@ -17,28 +16,32 @@ export const NoteInput = () => {
     if (modalRef.current && !modalRef.current.contains(event.target)) {
       setIsClicked(false);
       //to check we dont send notes with only taglines
-      if(tagline.trim() === "" &&( title.trim() === "" && content.trim() === "")){
+      if (
+        tagline.trim() === "" &&
+        title.trim() === "" &&
+        content.trim() === ""
+      ) {
         setTagline("");
-        toast.warn("⚠️ Can't add a note with just a tagline. Please provide a title and some content.", {
-          position: "top-right",
-          autoClose: 4500,
-          closeOnClick: true,
-
-        });
+        toast.warn(
+          "⚠️ Can't add a note with just a tagline. Please provide a title and some content.",
+          {
+            position: "top-right",
+            autoClose: 4500,
+            closeOnClick: true,
+          }
+        );
       }
       // Check if either title or content is not empty
       if (title.trim() !== "" || content.trim() !== "") {
         console.log("in handleClickOutside");
         sendNote();
-        
       }
-    
     }
   };
 
   const sendNote = () => {
     console.log("Sending note:", title, content, tagline);
-    fetch("http://localhost:6001/addnote", {
+    fetch("https://google-keep-clone-2dw1.onrender.com/addnote", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -50,7 +53,7 @@ export const NoteInput = () => {
       }),
     })
       .then((response) => {
-        console.log("Sending note:", response)
+        console.log("Sending note:", response);
         if (response.ok) {
           console.log("Note added successfully");
           // Clear fields after successful submission
@@ -61,8 +64,6 @@ export const NoteInput = () => {
             position: "top-right",
             autoClose: 4500,
             closeOnClick: true,
-
-
           });
         } else {
           throw new Error("Failed to add note");
@@ -96,10 +97,16 @@ export const NoteInput = () => {
   return (
     <div
       className="modal show"
-      style={{ display: "block", position: "initial", width: "42rem" , backgroundColor: "transparent", paddingTop:'3rem'}}
-    >      <ToastContainer theme="colored" style={{fontSize:'1.2rem'}}
-/>
-
+      style={{
+        display: "block",
+        position: "initial",
+        width: "42rem",
+        backgroundColor: "transparent",
+        paddingTop: "3rem",
+      }}
+    >
+      {" "}
+      <ToastContainer theme="colored" style={{ fontSize: "1.2rem" }} />
       <Modal.Dialog ref={modalRef} style={styles.modalDialog}>
         <Modal.Header style={{ border: "none" }}>
           <Form.Control
