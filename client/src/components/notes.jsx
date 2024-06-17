@@ -74,6 +74,7 @@ export const Notes = memo(function Notes() {
   return (
     <>
       <h1 style={{textAlign:'center'}}>Notes</h1>
+      <h5>if there are no notes just refresh it . as the server need sometime to start</h5>
       <div
         style={{
           display: "flex",
